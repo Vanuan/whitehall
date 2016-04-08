@@ -111,6 +111,11 @@ class Admin::AttachmentsControllerTest < ActionController::TestCase
     assert_equal 'Some **govspeak** body', @edition.attachments.first.govspeak_content_body
   end
 
+  test 'POST :create sends the html attachment to the publishing api' do
+    Whitehall::PublishingApi.expects(:publish_async).with(instance_of(HtmlAttachment))
+    post :create, edition_id: @edition, type: 'html', attachment: valid_html_attachment_params
+  end
+
   test 'POST :create ignores html attachments when attachable does not allow them' do
     attachable = create(:statistical_data_set, access_limited: false)
 

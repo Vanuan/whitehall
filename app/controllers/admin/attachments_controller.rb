@@ -16,7 +16,7 @@ class Admin::AttachmentsController < Admin::BaseController
   def new; end
 
   def create
-    if attachment.save
+    if save_attachment
       redirect_to attachable_attachments_path(attachable), notice: "Attachment '#{attachment.title}' uploaded"
     else
       render :new
@@ -170,6 +170,14 @@ private
       redirect_to attachable_attachments_path(attachable), notice: "Attachment '#{attachment.title}' uploaded"
     else
       raise
+    end
+  end
+
+  def save_attachment
+    if attachment.respond_to?(:save_and_update_publishing_api)
+      attachment.save_and_update_publishing_api
+    else
+      attachment.save
     end
   end
 end
