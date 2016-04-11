@@ -39,6 +39,8 @@ private
     case edition
     when ::CaseStudy
       PublishingApiPresenters::CaseStudy
+    when ::DetailedGuide
+      PublishingApiPresenters::DetailedGuide
     else
       PublishingApiPresenters::Edition
     end
