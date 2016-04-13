@@ -12,6 +12,11 @@ user-friendly manner. Documentation can be found on [rdoc](http://rdoc.info/gith
 * *Govspeak* A variation of [Markdown](https://daringfireball.net/projects/markdown) 
 used throughout 'Whitehall' as the general publishing format
 
+## Quickstart
+
+    docker-compose -f build/docker-compose.yml build
+    docker-compose -f build/docker-compose.yml up
+
 ## Technical Documentation
 
 Whitehall is a Rails 4 app built on a MySQL database. It is deployed
